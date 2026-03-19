@@ -21,7 +21,6 @@ import Card from '../../../components/common/Card'
 import Button from '../../../components/common/Button'
 import RatingStars from '../../../components/common/RatingStars'
 import ImageGallery from '../../../components/common/ImageGallery'
-import Badge from '../../../components/common/Badge'
 import type { Room, Comment } from '../../../types'
 
 export default function RoomDetailPage() {
