@@ -1,19 +1,21 @@
 import { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { User, LogOut, Calendar, Menu, X } from 'lucide-react'
+import { useSelector, useDispatch } from 'react-redux'
+import { RootState } from '../../../../store'
+import { logout } from '../../../../store/slices/authSlice'
 
 export default function HomeHeader() {
     const navigate = useNavigate()
+    const dispatch = useDispatch()
     const [showUserMenu, setShowUserMenu] = useState(false)
     const [showMobileMenu, setShowMobileMenu] = useState(false)
 
-    // TODO: Get from Redux store
-    const isLoggedIn = false
-    const user = { name: 'John Doe', avatar: 'https://via.placeholder.com/40' }
+    const { user, token } = useSelector((state: RootState) => state.auth)
+    const isLoggedIn = !!token || !!user
 
     const handleLogout = () => {
-        // TODO: Call logout API and clear Redux store
-        localStorage.removeItem('access_token')
+        dispatch(logout())
         navigate('/')
     }
 
@@ -44,7 +46,14 @@ export default function HomeHeader() {
                                         className="flex items-center gap-2 px-3 py-2 rounded-full border hover:shadow-md transition-shadow"
                                     >
                                         <Menu className="w-4 h-4" />
-                                        <img src={user.avatar} alt={user.name} className="w-8 h-8 rounded-full" />
+                                        {user?.avatar ? (
+                                            <img src={user.avatar} alt={user.name} className="w-8 h-8 rounded-full object-cover" />
+                                        ) : (
+                                            <div className="w-8 h-8 bg-rose-500 rounded-full flex items-center justify-center text-white font-medium text-sm">
+                                                {user?.name?.[0]?.toUpperCase() || 'U'}
+                                            </div>
+                                        )}
+                                        <span className="hidden sm:block text-sm font-medium truncate max-w-[100px]">{user?.name}</span>
                                     </button>
                                     {showUserMenu && (
                                         <div className="absolute right-0 mt-2 w-48 bg-white rounded-lg shadow-lg py-2 border">

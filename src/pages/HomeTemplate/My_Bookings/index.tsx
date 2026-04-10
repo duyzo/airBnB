@@ -24,12 +24,18 @@ export default function MyBookings() {
 
     useEffect(() => {
         // TODO: Fetch bookings from API
+        const today = new Date()
+        const nextMonth = new Date(today)
+        nextMonth.setMonth(today.getMonth() + 1)
+        const lastMonth = new Date(today)
+        lastMonth.setMonth(today.getMonth() - 1)
+
         const mockBookings: BookingWithDetails[] = [
             {
                 id: 1,
                 maPhong: 1,
-                ngayDen: '2024-03-15',
-                ngayDi: '2024-03-20',
+                ngayDen: nextMonth.toISOString().split('T')[0],
+                ngayDi: new Date(nextMonth.getTime() + 5 * 86400000).toISOString().split('T')[0], // + 5 days
                 soLuongKhach: 4,
                 maNguoiDung: 1,
                 roomName: 'Luxury Beachfront Villa',
@@ -39,8 +45,8 @@ export default function MyBookings() {
             {
                 id: 2,
                 maPhong: 2,
-                ngayDen: '2024-02-10',
-                ngayDi: '2024-02-15',
+                ngayDen: lastMonth.toISOString().split('T')[0],
+                ngayDi: new Date(lastMonth.getTime() + 3 * 86400000).toISOString().split('T')[0], // + 3 days
                 soLuongKhach: 2,
                 maNguoiDung: 1,
                 roomName: 'Downtown Apartment',

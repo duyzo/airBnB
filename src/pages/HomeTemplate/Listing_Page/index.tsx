@@ -68,6 +68,18 @@ export default function ListingPage() {
         { key: 'hoBoi', label: 'Pool', icon: Waves },
     ]
 
+    const filteredRooms = rooms.filter((room) => {
+        // Lọc theo giá
+        if (room.giaTien < priceRange[0] || room.giaTien > priceRange[1]) return false
+        // Lọc theo số lượng khách
+        if (room.khach < minGuests) return false
+        // Lọc theo tiện ích (phải có tất cả tiện ích đã chọn)
+        for (const amenity of selectedAmenities) {
+            if (!room[amenity as keyof Room]) return false
+        }
+        return true
+    })
+
     return (
         <div className="min-h-screen bg-gray-50">
             <div className="container mx-auto px-4 py-8">
@@ -76,7 +88,7 @@ export default function ListingPage() {
                     <div>
                         <h1 className="text-3xl font-bold text-gray-800">Available Properties</h1>
                         <p className="text-gray-600 mt-1">
-                            {rooms.length} properties found
+                            {filteredRooms.length} properties found
                         </p>
                     </div>
                     <div className="flex items-center gap-3">
@@ -174,7 +186,7 @@ export default function ListingPage() {
                 {/* Rooms Grid/List */}
                 {viewMode === 'grid' ? (
                     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-                        {rooms.map((room) => (
+                        {filteredRooms.map((room) => (
                             <Card key={room.id} hover onClick={() => handleRoomClick(room.id)}>
                                 <div className="relative h-48">
                                     <img
@@ -226,7 +238,7 @@ export default function ListingPage() {
                     </div>
                 ) : (
                     <div className="space-y-4">
-                        {rooms.map((room) => (
+                        {filteredRooms.map((room) => (
                             <Card
                                 key={room.id}
                                 hover
