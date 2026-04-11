@@ -1,7 +1,7 @@
 import { Link, useNavigate } from 'react-router-dom'
 import { LogOut, Shield, User } from 'lucide-react'
 import { useSelector, useDispatch } from 'react-redux'
-import { RootState } from '../../../../store'
+import { type RootState } from '../../../../store'
 import { logout } from '../../../../store/slices/authSlice'
 
 export default function AdminHeader() {

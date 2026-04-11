@@ -26,7 +26,7 @@ export default function Home() {
                 tenViTri: 'Hà Nội',
                 tinhThanh: 'Hà Nội',
                 quocGia: 'Việt Nam',
-                hinhAnh: 'https://images.unsplash.com/photo-1564410267141-f0928e0b2f2e?w=800',
+                hinhAnh: 'https://images.unsplash.com/photo-1583417319070-4a69ee38a4ea?w=800',
             },
             {
                 id: 3,

@@ -26,6 +26,16 @@ export default function ListingPage() {
     useEffect(() => {
         // TODO: Fetch rooms from API based on locationId and filters
         // Mock data
+        const mockImages = [
+            '1582268611958-ebfd161ef9cf',
+            '1522708323590-d24dbb6b0267',
+            '1571896349842-33c89424de2d',
+            '1587061949409-02df41d5e562',
+            '1512917774080-9991f1c4c750',
+            '1600596542815-ffad4c1539a9',
+            '1600585154340-be6161a56a0c',
+            '1510798831971-661eb04b3739'
+        ]
         const mockRooms: Room[] = Array.from({ length: 12 }, (_, i) => ({
             id: i + 1,
             tenPhong: `Beautiful ${i % 3 === 0 ? 'Villa' : i % 3 === 1 ? 'Apartment' : 'Studio'} #${i + 1}`,
@@ -45,7 +55,7 @@ export default function ListingPage() {
             hoBoi: Math.random() > 0.7,
             banUi: Math.random() > 0.8,
             maViTri: Number(locationId) || 1,
-            hinhAnh: `https://images.unsplash.com/photo-${1560184897 + i}742-33c89424de2d?w=800`,
+            hinhAnh: `https://images.unsplash.com/photo-${mockImages[i % mockImages.length]}?w=800`,
         }))
         setRooms(mockRooms)
     }, [locationId, currentPage])

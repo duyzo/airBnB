@@ -30,7 +30,7 @@ export default function SearchBar({ onSearch, variant = 'full' }: SearchBarProps
     return (
         <form
             onSubmit={handleSubmit}
-            className="bg-white rounded-full shadow-lg border border-gray-200 p-2 flex items-center gap-4 max-w-4xl mx-auto"
+            className="bg-white text-gray-900 rounded-full shadow-lg border border-gray-200 p-2 flex items-center gap-4 max-w-4xl mx-auto"
         >
             <div className="flex-1 px-4 py-2 border-r">
                 <label className="block">

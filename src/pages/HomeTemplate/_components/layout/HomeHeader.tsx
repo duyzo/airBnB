@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { User, LogOut, Calendar, Menu, X } from 'lucide-react'
 import { useSelector, useDispatch } from 'react-redux'
-import { RootState } from '../../../../store'
+import { type RootState } from '../../../../store'
 import { logout } from '../../../../store/slices/authSlice'
 
 export default function HomeHeader() {
